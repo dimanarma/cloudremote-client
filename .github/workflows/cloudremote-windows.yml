@@ -170,3 +170,5 @@ jobs:
         with:
           name: CloudRemote-windows-x86_64
           path: ./SignOutput/CloudRemote-${{ env.VERSION }}-x86_64.exe
+
+# CloudRemote Windows build workflow
