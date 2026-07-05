@@ -2082,6 +2082,12 @@ pub fn rustdesk_interval(i: Interval) -> ThrottledInterval {
 }
 
 pub fn load_custom_client() {
+    // CloudRemote: server is baked in at compile time — lock it like AnyDesk/UltraViewer.
+    // Hiding network settings removes the only UI path to view/change ID/Relay/Key.
+    config::BUILTIN_SETTINGS
+        .write()
+        .unwrap()
+        .insert("hide-network-settings".to_owned(), "Y".to_owned());
     #[cfg(debug_assertions)]
     if let Ok(data) = std::fs::read_to_string("./custom.txt") {
         read_custom_client(data.trim());
